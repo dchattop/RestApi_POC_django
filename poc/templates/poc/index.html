@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if chart1  %}
+        <img src = "data:image/png;base64, {{ chart1|safe }}">
+    {% endif %}
+
+    {% if chart2  %}
+        <img src = "data:image/png;base64, {{ chart2|safe }}">
+    {% endif %}
+
+    {% if chart3  %}
+        <img src = "data:image/png;base64, {{ chart3|safe }}">
+    {% endif %}
+
+    {% if chart4  %}
+        <img src = "data:image/png;base64, {{ chart4|safe }}">
+    {% endif %}
+
+</body>
+</html>
