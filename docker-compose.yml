@@ -1,8 +1,21 @@
 version: '3'
 
 services:
+  db:
+    image: 'postgres:14.1-alpine'
+    restart: always
+    environment:
+      POSTGRES_USER: "dchattop"
+      POSTGRES_PASSWORD: "RedhatWelcome_1"
+    ports:
+      - '35432:35432'
+    volumes:
+      - db:/var/lib/postgresql/data
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
+volumes:
+  db:
+    driver: local
