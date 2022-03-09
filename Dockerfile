@@ -1,4 +1,4 @@
-FROM python:latest
+FROM registry.access.redhat.com/ubi8/python-39
 
 ENV PYTHONUNBUFFERED 1
 
@@ -12,3 +12,6 @@ RUN pip install -r requirements.txt
 
 COPY RestApi_POC_django /app
 
+EXPOSE 8000
+
+CMD ["python" "manage.py" "runserver" "0.0.0.0:8080"]
