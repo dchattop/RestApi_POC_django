@@ -12,11 +12,11 @@ RUN pip install -r requirements.txt
 
 COPY RestApi_POC_django /app
 
-RUN rm -rf /usr/local/lib/python3.10/site-packages/django/db/backends/postgresql/introspection.py
+RUN rm -rf /opt/app-root/lib64/python3.8/site-packages/django/db/backends/postgresql/introspection.py
 
-RUN ls /usr/local/lib/python3.10/site-packages/django/db/backends/postgresql
+RUN ls /opt/app-root/lib64/python3.8/site-packages/django/db/backends/postgresql
 
-COPY ./introspection.py /usr/local/lib/python3.10/site-packages/django/db/backends/postgresql/introspection.py
+COPY ./introspection.py /opt/app-root/lib64/python3.8/site-packages/django/db/backends/postgresql/introspection.py
 
 EXPOSE 8000
 
