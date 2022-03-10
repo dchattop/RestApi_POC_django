@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import ssl
 from socket import gethostname
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,6 +23,13 @@ CA_FILE = os.path.join(BASE_DIR, 'RestApi_POC_django/root.crt')
 ctx = ssl.create_default_context(cafile=CA_FILE)
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
+
+# JDV connection details
+NAME = os.environ.get('JDV_SCHEMA')
+USER = os.environ.get('JDV_USER')
+PASSWORD = os.environ.get('JDV_PASSWORD')
+HOST = os.environ.get('JDV_HOST') if os.environ.get('JDV_HOST') is not None else 'jdv.dev.a1.vary.redhat.com'
+PORT = os.environ.get('JDV_PORT') if os.environ.get('JDV_PORT') is not None else 35432
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -32,11 +40,11 @@ SECRET_KEY = 'django-insecure-=xog_$lx@ji*s-4mhgr%7)qlsh0u01xz_tt31%e8t-=jv0a4ok
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [gethostname(), # For internal OpenShift load balancer security purposes.
+ALLOWED_HOSTS = [gethostname(),  # For internal OpenShift load balancer security purposes.
 
-    os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
+                 os.environ.get('OPENSHIFT_APP_DNS'),  # Dynamically map to the OpenShift gear name.
                  'restapipocdjango-rest-api-poc.apps.ssa-prod.20r1.p1.openshiftapps.com',
-                ]
+                 ]
 
 # Application definition
 
@@ -84,17 +92,30 @@ WSGI_APPLICATION = 'RestApi_POC_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'marketing_vdm_dynamic',
-        'USER': 'dchattop',
-        'PASSWORD': 'RedhatWelcome_1',
-        'HOST': 'jdv.dev.a1.vary.redhat.com',
-        'PORT': 35432,
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
         'sslmode': ctx
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'marketing_vdm_dynamic',
+#         'USER': 'dchattop',
+#         'PASSWORD': 'RedhatWelcome_1',
+#         'HOST': 'jdv.dev.a1.vary.redhat.com',
+#         'PORT': 35432,
+#         'sslmode': ctx
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
