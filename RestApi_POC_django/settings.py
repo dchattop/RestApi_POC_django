@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [gethostname(),  # For internal OpenShift load balancer security
 
                  os.environ.get('OPENSHIFT_APP_DNS'),  # Dynamically map to the OpenShift gear name.
                  'restapipocdjango-rest-api-poc.apps.ssa-prod.20r1.p1.openshiftapps.com',
+                 'rest-api-poc-django-git-rest-api-poc.apps.ssa-prod.20r1.p1.openshiftapps.com',
                  ]
 
 # Application definition
