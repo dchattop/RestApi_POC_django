@@ -93,29 +93,29 @@ WSGI_APPLICATION = 'RestApi_POC_django.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': NAME,
-        'USER': USER,
-        'PASSWORD': PASSWORD,
-        'HOST': HOST,
-        'PORT': PORT,
-        'sslmode': ctx
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'marketing_vdm_dynamic',
-#         'USER': 'dchattop',
-#         'PASSWORD': 'RedhatWelcome_1',
-#         'HOST': 'jdv.dev.a1.vary.redhat.com',
-#         'PORT': 35432,
+#         'NAME': NAME,
+#         'USER': USER,
+#         'PASSWORD': PASSWORD,
+#         'HOST': HOST,
+#         'PORT': PORT,
 #         'sslmode': ctx
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'marketing_vdm_dynamic',
+        'USER': 'dchattop',
+        'PASSWORD': 'RedhatWelcome_1',
+        'HOST': 'jdv.dev.a1.vary.redhat.com',
+        'PORT': 35432,
+        'sslmode': ctx
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
