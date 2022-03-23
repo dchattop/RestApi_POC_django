@@ -12,7 +12,7 @@ WHERE  c.lead_id is not null
 AND  EXTRACT(year from c.created_date_est) >= '2020'
 order by c.lead_id
 
-limit 1000000
+limit 100000
 
 
 --select MONTHNAME(NOW())
